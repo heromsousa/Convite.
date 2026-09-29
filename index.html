@@ -1,0 +1,221 @@
+HTML
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hurt Ever After | Um Convite Especial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #090509;
+      background-image: radial-gradient(circle at center, #1f0817 0%, #050205 100%);
+      color: #e6d7e6;
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    .card {
+      background: rgba(18, 8, 18, 0.9);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      box-shadow: 0 0 35px rgba(139, 0, 0, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.9);
+      border-radius: 16px;
+      max-width: 460px;
+      width: 100%;
+      padding: 35px 25px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      position: relative;
+    }
+    .tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      color: #d4af37;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-family: 'Cinzel', serif;
+      color: #ff2e55;
+      font-size: 1.8rem;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 12px rgba(255, 46, 85, 0.5);
+      margin-bottom: 16px;
+    }
+    p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #cca3cc;
+      margin-bottom: 24px;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .option-btn {
+      background: rgba(35, 12, 30, 0.7);
+      border: 1px solid rgba(180, 50, 80, 0.4);
+      color: #f0e0f0;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.3s ease;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .option-btn:hover, .option-btn.selected {
+      background: rgba(139, 0, 50, 0.6);
+      border-color: #ff2e55;
+      box-shadow: 0 0 15px rgba(255, 46, 85, 0.4);
+      transform: translateY(-2px);
+    }
+    .action-btn {
+      background: linear-gradient(135deg, #a00028, #5a0015);
+      color: #ffffff;
+      border: 1px solid #d4af37;
+      padding: 14px 30px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(139, 0, 0, 0.7);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .action-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 25px rgba(255, 46, 85, 0.8);
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-top: 20px;
+      position: relative;
+      min-height: 60px;
+    }
+    #no-btn {
+      position: absolute;
+      background: rgba(40, 40, 40, 0.7);
+      border: 1px solid #555;
+      color: #aaa;
+      padding: 10px 22px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .step { display: none; }
+    .step.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .icon { font-size: 2.5rem; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <!-- Passo 1: Abertura -->
+    <div id="step-1" class="step active">
+      <div class="tag">Hurt Ever After</div>
+      <h1>Um Pacto Inevitável</h1>
+      <p>Nem todas as grandes histórias começam com contos de fadas perfeitos. Algumas pedem um pouco mais de intensidade, mistério e uma boa companhia.</p>
+      <button class="action-btn" onclick="nextStep(2)">Abrir Convite 🖤</button>
+    </div>
+
+    <!-- Passo 2: Escolha do Encontro -->
+    <div id="step-2" class="step">
+      <div class="tag">Capítulo I</div>
+      <h1>Escolha o Cenário</h1>
+      <p>Qual seria o nosso cenário ideal para essa ocasião?</p>
+      
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this, 'Café, livros e boa conversa')">☕ Café, livraria e conversa sem pressa</button>
+        <button class="option-btn" onclick="selectOption(this, 'Jantar intimista com drinks')">🍷 Jantar intimista e drinks especiais</button>
+        <button class="option-btn" onclick="selectOption(this, 'Passeio noturno com sobremesa')">🌙 Passeio noturno, luzes e sobremesa</button>
+      </div>
+
+      <button class="action-btn" onclick="confirmOption()">Confirmar Escolha ✨</button>
+    </div>
+
+    <!-- Passo 3: A Pergunta Final -->
+    <div id="step-3" class="step">
+      <div class="tag">Capítulo II</div>
+      <h1>A Pergunta Final</h1>
+      <p>Agora que o cenário está definido... você aceita sair comigo para vivermos esse capítulo?</p>
+      
+      <div class="btn-group">
+        <button class="action-btn" onclick="acceptInvite()">SIM, ACEITO 🖤</button>
+        <button id="no-btn" onmouseover="dodgeButton()" onclick="dodgeButton()">Não...</button>
+      </div>
+    </div>
+
+    <!-- Passo 4: Confirmação + WhatsApp -->
+    <div id="step-4" class="step">
+      <div class="icon">🩸✨</div>
+      <div class="tag">Pacto Selado</div>
+      <h1>Excelente Escolha</h1>
+      <p id="final-summary">Nosso próximo capítulo já tem data e local em mente.</p>
+      <a id="whatsapp-link" href="#" target="_blank" class="action-btn">Enviar Resposta no WhatsApp 💬</a>
+    </div>
+  </div>
+
+  <script>
+    
+    const MEU_NUMERO_WHATSAPP = "5544997226205"; 
+
+    let selectedChoice = "Um encontro especial";
+
+    function nextStep(stepNumber) {
+      document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+      document.getElementById(`step-${stepNumber}`).classList.add('active');
+    }
+
+    function selectOption(element, text) {
+      document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+      element.classList.add('selected');
+      selectedChoice = text;
+    }
+
+    function confirmOption() {
+      nextStep(3);
+    }
+
+    function dodgeButton() {
+      const btn = document.getElementById('no-btn');
+      const card = document.querySelector('.card');
+      const cardRect = card.getBoundingClientRect();
+      
+      const newX = Math.random() * (cardRect.width - 100) - (cardRect.width / 2 - 50);
+      const newY = Math.random() * (cardRect.height - 100) - (cardRect.height / 2 - 50);
+      
+      btn.style.transform = `translate(${newX}px, ${newY}px)`;
+    }
+
+    function acceptInvite() {
+      const summaryText = `Opção escolhida: "${selectedChoice}".`;
+      document.getElementById('final-summary').innerText = `${summaryText} Agora só falta enviar a confirmação para mim!`;
+      
+      const message = encodeURIComponent(`Aceito o pacto! 🖤 Escolhi o cenário: ${selectedChoice}. Quando vamos?`);
+      const waLink = `https://wa.me/${MEU_NUMERO_WHATSAPP}?text=${message}`;
+      document.getElementById('whatsapp-link').setAttribute('href', waLink);
+      
+      nextStep(4);
+    }
+  </script>
+</body>
+</html>
